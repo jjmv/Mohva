@@ -18,19 +18,22 @@
            <a href="index.php" class="brand-logo ">Mohva Logistics</a>
            <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
            <ul class="right hide-on-med-and-down">
-             <li><a href="#"><i class="material-icons left">perm_identity</i>Compañia</a></li>
+             <li><a href="compania.php"><i class="material-icons left">perm_identity</i>Compañia</a></li>
              <li><a href="aduanas.php"><i class="material-icons left">language</i>Aduanas</a></li>
              <li><a href="procesos.php"><i class="material-icons left">work</i>Procesos</a></li>
              <li><a href="contactoIndex.php"><i class="material-icons left">phone</i>Contacto</a></li>
-
+             <li><a class="waves-effect waves-light btn modal-trigger  orange darken-3" href="#modal1">Empleados</a></li>
            </ul>
            <ul class="side-nav" id="mobile-demo">
              <li><a href="compania.php">Compañia</a></li>
              <li><a href="aduanas.php">Aduanas</a></li>
              <li><a href="procesos.php">Procesos</a></li>
              <li><a href="contactoIndex.php">Contacto</a></li>
+             <li><a class="waves-effect waves-light btn modal-trigger orange darken-3" href="#modal1">Empleados</a></li>
            </ul>
+
        </div>
+
    </nav>
 
      <div class="parallax-container">
@@ -103,6 +106,37 @@
         </div>
       </footer>
 
+      <!-- Modal Structure -->
+        <div id="modal1" class="modal">
+          <div class="modal-content">
+            <div class="row container">
+              <form class="col s12">
+                <div class="row">
+                  <div class="input-field col s12">
+                    <i class="material-icons prefix">account_circle</i>
+                    <input id="icon_prefix" type="text" class="validate">
+                    <label for="icon_prefix">Usuario</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s12">
+                    <i class="material-icons prefix">vpn_key</i>
+                    <input id="icon_telephone" type="password" class="validate">
+                    <label for="icon_telephone">Contraseña</label>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+            <div class="modal-footer">
+              <div class="container">
+                <button class="btn waves-effect waves-light black" type="submit" name="action">Entrar
+                  <i class="material-icons right">send</i>
+                </button>
+              </div>
+            </div>
+          </div>
+
 
 
 
@@ -119,6 +153,10 @@
          $(document).ready(function(){
          $('.parallax').parallax();
          });
+         $(document).ready(function(){
+     // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+        $('.modal-trigger').leanModal();
+        });
 
 
        </script>
