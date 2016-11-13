@@ -1,3 +1,44 @@
+<?php 
+session_start();
+if(isset($_SESSION['usuario'])){
+    header('Location: empleadosIndex.php');
+} $errores = '';
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+	$usuario = filter_var(strtolower($_POST['usuario']), FILTER_SANITIZE_STRING);
+	$password = $_POST['password'];
+	//$password = hash('sha512', $password);
+
+	try {
+
+		$conexion = new PDO('mysql:host=localhost;dbname=mohva', 'root', ''); #Modificar a la hora de implementar
+		
+	} catch (PDOException $e) {
+		echo "Error: " . $e->getMessage();
+	}
+
+	$statement = $conexion->prepare('
+		SELECT * FROM  usuarios WHERE usuario = :usuario AND pass = :password'
+	);
+
+	$statement->execute(array(
+		':usuario'=>$usuario,
+		':password'=>$password
+		));
+
+	$resultado = $statement->fetch();
+	if ($resultado != false) {
+		$_SESSION['usuario'] = $usuario;
+		header('Location: empleadosIndex.php');
+	} else {
+		$errores .= '<li>Datos Incorrectos</li>';
+
+	}
+
+}
+?>
+
+
 <!DOCTYPE html>
  <html>
    <meta charset="utf-8">
@@ -95,36 +136,50 @@
      </div>
    </footer>
 
-   <!-- Modal Structure -->
-     <div id="modal1" class="modal">
-       <div class="modal-content">
-         <div class="row container">
-           <form class="col s12">
-             <div class="row">
-               <div class="input-field col s12">
-                 <i class="material-icons prefix">account_circle</i>
-                 <input id="icon_prefix" type="text" class="validate">
-                 <label for="icon_prefix">Usuario</label>
-               </div>
-             </div>
-             <div class="row">
-               <div class="input-field col s12">
-                 <i class="material-icons prefix">vpn_key</i>
-                 <input id="icon_telephone" type="password" class="validate">
-                 <label for="icon_telephone">Contraseña</label>
-               </div>
-             </div>
-           </form>
-         </div>
-       </div>
-         <div class="modal-footer">
-           <div class="container">
-             <button class="btn waves-effect waves-light black" type="submit" name="action">Entrar
-               <i class="material-icons right">send</i>
-             </button>
-           </div>
-         </div>
-       </div>
+        <!-- Modal Structure -->
+          <div id="modal1" class="modal">
+            <div class="modal-content">
+              <div class="row container">
+                <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" name="login" class="col s12" method="post">
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <i class="material-icons prefix">account_circle</i>
+                      <input name="usuario" id="icon_prefix" type="text" class="validate">
+                      <label for="icon_prefix">Usuario</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <i class="material-icons prefix">vpn_key</i>
+                      <input name="password" id="icon_telephone" type="password" class="validate">
+                      <label for="icon_telephone">Contraseña</label>
+                    </div>
+                  </div>
+
+
+
+
+
+                </form>
+              </div>
+            </div>
+              <div class="modal-footer">
+                <div class="container">
+                  <button class="btn waves-effect waves-light black" type="submit" name="action" onclick="login.submit()">Entrar
+                    <i class="material-icons right" onclick="login.submit()">send</i>
+                  </button>
+
+                  <?php if(!empty($errores)):  ?> <!-- Si hay errores, los muestra -->
+                    <div>
+                      <ul>
+                        <?php echo $errores; ?>
+                      </ul>
+                    </div>
+                  <?php endif; ?>
+
+                </div>
+              </div>
+            </div>
 
 
 
