@@ -42,7 +42,8 @@
          <li><div class="divider"></div></li>
           <li><a class="waves-effect waves-orange " href="verPedimentos.php"><i class="material-icons">pageview</i>Ver Pedimentos</a></li>
            <li><a class="waves-effect waves-orange " href="agregarPedimentos.php"><i class="material-icons">add_circle</i>Agregar Pedimentos</a></li>
-            <li><a class="waves-effect waves-orange " href="fracciones.php"><i class="material-icons">view_list</i>Fracciones</a></li>
+            <li><a class="waves-effect waves-orange " href="verFracciones.php"><i class="material-icons">view_list</i>Fracciones</a></li>
+            <li><a class="waves-effect waves-orange " href="agregarFracciones.php"><i class="material-icons">view_list</i>Agregar Fracciones</a></li>
              <li><a class="waves-effect waves-orange " href="mensajes.php"><i class="material-icons">message</i>Mensajes</a></li>
 
          <br><br>
@@ -52,8 +53,58 @@
         </header>
 
         <main>
-            <div class="container">    
-<h1>Bienvenido</h1>
+
+
+
+
+
+
+
+
+
+
+            <div class="container"> 
+
+
+
+
+      <h1>Mensajes</h1>
+
+            
+<?php
+
+
+$connection = mysql_connect('localhost', 'root', ''); //The Blank string is the password
+mysql_select_db('mohva');
+
+$query = "SELECT * FROM contacto"; //You don't need a ; like you do in SQL
+$result = mysql_query($query);
+
+echo "<table>"; // start a table tag in the HTML
+
+echo "<thead>";
+echo "<tr>";
+echo "<th data-field='id'>Id</th>";
+echo "<th data-field='Numero de pedimento'>Nombre</th>";
+echo "<th data-field='Cliente'>Correo</th>";
+echo "<th data-field='Cliente'>Mensaje</th>";
+echo "</tr>";
+echo "</thead>";
+
+while($row = mysql_fetch_array($result)){   //Creates a loop to loop through results
+echo "<tr><td>" . $row['id'] . "</td><td>" . $row['nombre'] . "</td><td>" . $row['correo'] . "</td><td>" . $row['mensaje'] . "</td></tr>";  //$row['index'] the index here is a field name
+}
+
+echo "</table>"; //Close the table in HTML
+
+mysql_close(); //Make sure to close out the database connection
+
+
+ ?>
+ 
+
+    
+
             </div>   
         </main>
 

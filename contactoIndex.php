@@ -3,10 +3,10 @@
 $errores='';
 $enviado='';
 
-if (isset($_POST['submit'])) {
-  $nombre = $_POST['nombre'];
-  $correo = $_POST['correo'];
-  $mensaje = $_POST['mensaje'];
+if (isset($_GET['submit'])) {
+  $nombre = $_GET['nombre'];
+  $correo = $_GET['correo'];
+  $mensaje = $_GET['mensaje'];
 
   if(!empty($nombre)){
     $nombre = trim($nombre);
@@ -27,7 +27,6 @@ if (isset($_POST['submit'])) {
   }else {
     $errores.= 'Por favor ingresa un correo <br />';
   }
-
   if (!empty($mensaje)) {
     $mensaje = htmlspecialchars($mensaje);
     $mensaje = trim($mensaje);
@@ -41,12 +40,12 @@ if (isset($_POST['submit'])) {
 
     try {
 
-        $conexion = new PDO('mysql:host=localhost;dbname=mohvalogistics', 'root','');
+        $conexion = new PDO('mysql:host=localhost;dbname=mohva', 'root','');
 
 
         $statement = $conexion->prepare("INSERT INTO contacto VALUES(null, :nombre, :correo, :mensaje )");
         $statement->execute(array(':nombre' => $nombre , ':correo' => $correo, ':mensaje' => $mensaje ));
-
+        
         $resultados = $statement->fetchall();
         foreach ($resultados as $usuarios) {
           echo $usuarios['nombre'] . '<br />';
