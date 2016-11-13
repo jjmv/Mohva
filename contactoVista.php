@@ -186,15 +186,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <i class="material-icons right">send</i>
   </button>
  </form>
- <?php if(!empty($errores)):  ?>
-     <div class="alert error">
-         <?php echo $errores; ?>
+ <?php if(!empty($errores2)):  ?>
+     <div >
+         <?php echo $errores2; ?>
      </div>
  <?php elseif($enviado):
 
    echo "El mensaje ha sido enviado. ¡Gracias por sus comentarios!";
 
    endif ?>
+
+
+
+
+
+
 
   </div>
 

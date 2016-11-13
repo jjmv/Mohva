@@ -1,14 +1,63 @@
 <?php
 
-$error = '';
+$errores = '';
 
+$enviado = '';
 if (isset($_POST['submit'])) {
-    $error.= "entro en el IF";
+    
+
     $numPedim = $_POST['numPedim'];
     $cliente = $_POST['cliente'];
     $fraccion = $_POST['fraccion'];
     $importe = $_POST['importe'];
     $impuesto = $_POST['impuesto'];
+
+    if(!empty($numPedim)){ // Si no está vacío, osea sí se ingreso un numero de pedimento
+      if(!is_numeric($numPedim)){ // Pregunta si no es numérico el dato ingresado
+        $errores.= "Debe Ingresar solo numeros para el pedimento </br>";
+      } else if(strlen($numPedim) != 7){
+        $errores.= "El numero de pedimento no es de 7 digitos </br>";
+      }
+  
+    } else {
+      $errores.= "Por favor ingrese un numero de pedimento <br />";
+    }
+
+
+    if(!empty($cliente)){
+      $cliente = trim($cliente);
+      $cliente = filter_var($cliente, FILTER_SANITIZE_STRING);
+    } else {
+      $errores.= "Por favor ingrese un cliente <br />";
+    }
+
+    if(!empty($fraccion)){
+      if(!is_numeric($fraccion)){
+        $errores .= "Debe ingresar solo numeros para la fraccion <br />";
+      }
+    } else {
+      $errores.= "Por favor ingrese una fraccion <br />";
+    }
+
+    if(!empty($importe)){
+      if(!is_numeric($importe)){
+        $errores .= "Debe ingresar solo numeros para el importe <br />";
+      }
+    } else {
+      $errores.= "Por favor ingrese un importe <br />";
+    }
+
+    if(!empty($impuesto)){
+      if(!is_numeric($impuesto)){
+        $errores .= "Debe ingresar solo numeros para el impuesto <br />";
+      }
+    } else {
+      $errores.= "Por favor ingrese un impuesto <br />";
+    }
+
+
+
+
 
 
     /*if(!empty($nombre)){
@@ -37,10 +86,10 @@ if (isset($_POST['submit'])) {
   } else {
     $errores.= 'Por favor ingresa el mensaje';
   }
-
-  if (!$errores) { //Se pregunta SI NO HAY ERRORES
 */
+  if (!$errores) { //Se pregunta SI NO HAY ERRORES
 
+    
 
     try{
 
@@ -48,7 +97,7 @@ if (isset($_POST['submit'])) {
     $conexion = new PDO('mysql:host=localhost;dbname=mohva', 'root', '');
  
     $statement = $conexion->prepare("INSERT INTO pedimentos VALUES(null, :numPedim, :cliente, :fraccion, :importe, :impuesto)");
-    $error .= "preparo la conexion";  
+
     $statement->execute(array(':numPedim' => $numPedim, ':cliente' => $cliente, ':fraccion' => $fraccion, ':importe' => $importe, ':impuesto' => $impuesto ));
   
     $resultados = $statement->fetchall();
@@ -59,14 +108,17 @@ if (isset($_POST['submit'])) {
         echo "Error: " . $e->getMessage();
     }
 
+    $enviado = 'true';
 
+}
 
 }
 
 
-
-
 ?>
+
+
+
 
 
 
@@ -143,38 +195,43 @@ if (isset($_POST['submit'])) {
     <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" class="col s12" method="POST" name="login">
       <div class="row">
         <div class="input-field col s12">
-          <input name="numPedim" placeholder="1234567" id="first_name" type="text" class="validate">
+          <input value="<?php if(!$enviado && isset($numPedim)) echo $numPedim ?>" name="numPedim" placeholder="1234567" id="first_name" type="text" class="validate">
           <label for="first_name">Numero de pedimento</label>
         </div>
 
         <div class="input-field col s12">
-          <input name="cliente" placeholder="Empresa, Nombre, etc." id="first_name" type="text" class="validate">
+          <input value="<?php if(!$enviado && isset($cliente)) echo $cliente ?>" name="cliente" placeholder="Empresa, Nombre, etc." id="first_name" type="text" class="validate">
           <label for="first_name">Cliente</label>
         </div>
 
         <div class="input-field col s12">
-          <input name="fraccion" placeholder="123456789" id="first_name" type="text" class="validate">
+          <input value="<?php if(!$enviado && isset($fraccion)) echo $fraccion ?>" name="fraccion" placeholder="123456789" id="first_name" type="text" class="validate">
           <label for="first_name">Fraccion</label>
         </div>
 
         <div class="input-field col s12">
-          <input name="importe" placeholder="99.99" id="first_name" type="text" class="validate">
+          <input value="<?php if(!$enviado && isset($importe)) echo $importe ?>" name="importe" placeholder="99.99" id="first_name" type="text" class="validate">
           <label for="first_name">Importe</label>
         </div>
 
         <div class="input-field col s12">
-          <input name="impuesto" placeholder="99.99" id="first_name" type="text" class="validate">
+          <input value="<?php if(!$enviado && isset($impuesto)) echo $impuesto ?>" name="impuesto" placeholder="99.99" id="first_name" type="text" class="validate">
           <label for="first_name">Impuestos</label>
         </div>   
 
         <button class="btn waves-effect waves-light black" type="submit" name="submit">Enviar
     <i class="material-icons right">send</i>     
+
+
         
     </form>
+
+
+
   </div>
 
 
-
+ 
 
             </div>   
         </main>
@@ -186,7 +243,13 @@ if (isset($_POST['submit'])) {
 
    
 
-
+           <?php if(!empty($errores)): ?>
+        <div >
+          <?php echo $errores; ?>
+        </div>
+        <?php elseif($enviado):
+          echo "Pedimento agregado";
+          endif ?>
 
 
   </body>
