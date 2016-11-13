@@ -1,10 +1,32 @@
 <?php
 
-$error = '';
+$errores = '';
+$enviado = '';
 
 if (isset($_POST['submit'])) {
     $descripcion = $_POST['descripcion'];
     $fraccion = $_POST['fraccion'];
+
+    if(!empty($fraccion)){
+      if(!is_numeric($fraccion)){
+        $errores .= "Debe ingresar solo numeros para la fraccion <br />";
+      }
+    } else {
+      $errores.= "Por favor ingrese una fraccion <br />";
+    }
+
+
+
+  if (!empty($descripcion)) {
+      $descripcion = htmlspecialchars($descripcion);
+      $descripcion = trim($descripcion);
+      $descripcion = stripcslashes($descripcion);
+    } else {
+      $errores.= 'Por favor agregue una descripcion';
+    }
+
+
+
 
 
     /*if(!empty($nombre)){
@@ -33,9 +55,8 @@ if (isset($_POST['submit'])) {
   } else {
     $errores.= 'Por favor ingresa el mensaje';
   }
-
-  if (!$errores) { //Se pregunta SI NO HAY ERRORES
 */
+  if (!$errores) { //Se pregunta SI NO HAY ERRORES
 
 
     try{
@@ -54,7 +75,9 @@ if (isset($_POST['submit'])) {
         echo "Error: " . $e->getMessage();
     }
 
+    $enviado = 'true';
 
+  }
 
 }
 
@@ -131,12 +154,12 @@ if (isset($_POST['submit'])) {
 <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" class="col s12" method="POST" name="login">
       <div class="row">
         <div class="input-field col s12">
-          <input name="fraccion" placeholder="123456789" id="first_name" type="text" class="validate">
+          <input value="<?php if(!$enviado && isset($fraccion)) echo $fraccion ?>" name="fraccion" placeholder="123456789" id="first_name" type="text" class="validate">
           <label for="first_name">Fraccion</label>
         </div>
 
         <div class="input-field col s12">
-          <input name="descripcion" placeholder="Agregue una descripcion" id="first_name" type="text" class="validate">
+          <input value="<?php if(!$enviado && isset($descripcion)) echo $descripcion ?>" name="descripcion" placeholder="Agregue una descripcion" id="first_name" type="text" class="validate">
           <label for="first_name">Descripcion</label>
         </div>
 
@@ -157,13 +180,22 @@ if (isset($_POST['submit'])) {
 
 
 
-
-
             </div>   
+
+
+
+           <?php if(!empty($errores)): ?>
+        <div >
+          <?php echo $errores; ?>
+        </div>
+        <?php elseif($enviado):
+          echo "Fraccion agregada";
+          endif ?>
+      
         </main>
 
 
-      
+
 
 
 

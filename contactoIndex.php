@@ -1,6 +1,6 @@
 <?php
 
-$errores='';
+$errores2='';
 $enviado='';
 
 if (isset($_GET['submit'])) {
@@ -12,7 +12,7 @@ if (isset($_GET['submit'])) {
     $nombre = trim($nombre);
     $nombre = filter_var($nombre, FILTER_SANITIZE_STRING);
   }else {
-    $errores.= 'Por favor ingresa un nombre </br>';
+    $errores2.= 'Por favor ingresa un nombre </br>';
   }
 
   if (!empty($correo)) {
@@ -20,22 +20,22 @@ if (isset($_GET['submit'])) {
     $correo = filter_var($correo, FILTER_SANITIZE_EMAIL);
 
     if(!filter_var($correo, FILTER_VALIDATE_EMAIL)){
-      $errores.= 'Por favor ingresa un correo valido <br />';
+      $errores2.= 'Por favor ingresa un correo valido <br />';
     }
 
 
   }else {
-    $errores.= 'Por favor ingresa un correo <br />';
+    $errores2.= 'Por favor ingresa un correo <br />';
   }
   if (!empty($mensaje)) {
     $mensaje = htmlspecialchars($mensaje);
     $mensaje = trim($mensaje);
     $mensaje = stripcslashes($mensaje);
   } else {
-    $errores.= 'Por favor ingresa el mensaje';
+    $errores2.= 'Por favor ingresa el mensaje';
   }
 
-  if (!$errores) { //Se pregunta SI NO HAY ERRORES
+  if (!$errores2) { //Se pregunta SI NO HAY ERRORES
 
 
     try {
