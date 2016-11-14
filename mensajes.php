@@ -23,6 +23,17 @@
     }
     </style>
 
+    <script type="text/javascript">
+
+    function passVal (id) {
+
+      window.location.href = "eliminarMensajes.php?id="+id;
+
+    } 
+    
+
+    </script>
+
 
     </head>
 
@@ -84,15 +95,17 @@ echo "<table>"; // start a table tag in the HTML
 
 echo "<thead>";
 echo "<tr>";
-echo "<th data-field='id'>Id</th>";
+//echo "<th style='visibility:hidden; data-field='id'>Id</th>";
 echo "<th data-field='Numero de pedimento'>Nombre</th>";
 echo "<th data-field='Cliente'>Correo</th>";
 echo "<th data-field='Cliente'>Mensaje</th>";
 echo "</tr>";
 echo "</thead>";
 
+//<td style='visibility:hidden;'>" . $row['id'] . "</td>
+
 while($row = mysql_fetch_array($result)){   //Creates a loop to loop through results
-echo "<tr><td>" . $row['id'] . "</td><td>" . $row['nombre'] . "</td><td>" . $row['correo'] . "</td><td>" . $row['mensaje'] . "</td></tr>";  //$row['index'] the index here is a field name
+echo "<tr><td>" . $row['nombre'] . "</td><td>" . $row['correo'] . "</td><td>" . $row['mensaje'] . "</td><td> <a onclick='passVal(".$row['id'].");' class='btn-floating btn-large waves-effect waves-light red'><i  class='material-icons'>delete</i></a> </td></tr>";  //$row['index'] the index here is a field name
 }
 
 echo "</table>"; //Close the table in HTML

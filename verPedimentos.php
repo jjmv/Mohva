@@ -10,6 +10,24 @@
     <meta charset="utf-8">
     <title>Bienvenido!</title>
 
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>
+
+
+    <script type="text/javascript">
+
+    function passVal (id) {
+
+      window.location.href = "eliminarPedimentos.php?id="+id;
+
+    } 
+    
+
+    </script>
+
+
+
+
+
     <style type="text/css">
 
         header, main, footer {
@@ -61,6 +79,7 @@
 <?php
 
 
+
 $connection = mysql_connect('localhost', 'root', ''); //The Blank string is the password
 mysql_select_db('mohva');
 
@@ -71,7 +90,7 @@ echo "<table>"; // start a table tag in the HTML
 
 echo "<thead>";
 echo "<tr>";
-echo "<th data-field='id'>Id</th>";
+//echo "<th data-field='id'>Id</th>";
 echo "<th data-field='Numero de pedimento'>Numero de pedimento</th>";
 echo "<th data-field='Cliente'>Cliente</th>";
 echo "<th data-field='Fraccion'>Fraccion</th>";
@@ -79,10 +98,18 @@ echo "<th data-field='Importe'>Importe</th>";
 echo "<th data-field='Impuesto'>Impuesto</th>";
 echo "</tr>";
 echo "</thead>";
-
+//<td>" . $row['id'] . "</td>
 while($row = mysql_fetch_array($result)){   //Creates a loop to loop through results
-echo "<tr><td>" . $row['id'] . "</td><td>" . $row['num_pedimento'] . "</td><td>" . $row['cliente'] . "</td><td>" . $row['fraccion'] . "</td><td>" . $row['importe'] . "</td><td>" . $row['impuestos'] . "</td></tr>";  //$row['index'] the index here is a field name
+echo "<tr><td>" . $row['num_pedimento'] . "</td><td>" . $row['cliente'] . "</td><td>" . $row['fraccion'] . "</td><td>" . $row['importe'] . "</td><td>" . $row['impuestos'] . "</td><td> <a onclick='passVal(".$row['id'].");' class='btn-floating btn-large waves-effect waves-light red'><i  class='material-icons'>delete</i></a> </td></tr>";  //$row['index'] the index here is a field name
 }
+
+//onclick='passVal(".$row['id'].");'
+
+/*
+while($row = mysql_fetch_array($result)){   //Creates a loop to loop through results
+echo "<tr><td>" . $row['id'] . "</td><td>" . $row['num_pedimento'] . "</td><td>" . $row['cliente'] . "</td><td>" . $row['fraccion'] . "</td><td>" . $row['importe'] . "</td><td>" . $row['impuestos'] . "</td><td> <a onclick='console.log(2);' class='btn-floating btn-large waves-effect waves-light red'><i onclick='console.log(1);' class='material-icons'>delete</i></a> </td></tr>";  //$row['index'] the index here is a field name
+}*/
+
 
 echo "</table>"; //Close the table in HTML
 
@@ -122,5 +149,12 @@ mysql_close(); //Make sure to close out the database connection
 // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
   $('.modal-trigger').leanModal();
   });
+
+ 
+
+
+
+  
+  
    </script>
 </html>
