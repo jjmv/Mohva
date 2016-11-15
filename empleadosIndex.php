@@ -53,13 +53,13 @@
         </header>
 
         <main>
-            <div class="container">    
-<h1>Bienvenido</h1>
-            </div>   
+            <div class="container">
+              <h1 align="center">Bienvenido</h1>
+            </div>
         </main>
 
 
-      
+
 
 
 

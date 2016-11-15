@@ -18,7 +18,7 @@ if (isset($_POST['submit'])) {
     } else {
       $errores.= 'Por favor agregue una descripcion';
     }
-  if (!$errores) { 
+  if (!$errores) {
     try{
     $conexion = new PDO('mysql:host=localhost;dbname=mohva', 'root', '');
     $statement = $conexion->prepare("INSERT INTO fracciones VALUES(null, :fraccion, :descripcion)");
@@ -90,7 +90,7 @@ if (isset($_POST['submit'])) {
         </header>
 
         <main>
-            <div class="container">    
+            <div class="container">
 <h1>Fracciones</h1>
 
 
@@ -98,20 +98,20 @@ if (isset($_POST['submit'])) {
 <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" class="col s12" method="POST" name="login">
       <div class="row">
         <div class="input-field col s12">
-          <input value="<?php if(!$enviado && isset($fraccion)) echo $fraccion ?>" name="fraccion" placeholder="123456789" id="first_name" type="text" class="validate">
+          <input value="<?php if(!$enviado && isset($fraccion)) echo $fraccion ?>" name="fraccion" placeholder="123456789" id="first_name" type="text" class="validate" required>
           <label for="first_name">Fraccion</label>
         </div>
 
         <div class="input-field col s12">
-          <input value="<?php if(!$enviado && isset($descripcion)) echo $descripcion ?>" name="descripcion" placeholder="Agregue una descripcion" id="first_name" type="text" class="validate">
+          <input value="<?php if(!$enviado && isset($descripcion)) echo $descripcion ?>" name="descripcion" placeholder="Agregue una descripcion" id="first_name" type="text" class="validate" required>
           <label for="first_name">Descripcion</label>
         </div>
 
 
 
         <button class="btn waves-effect waves-light black" type="submit" name="submit">Enviar
-    <i class="material-icons right">send</i>     
-        
+    <i class="material-icons right">send</i>
+
     </form>
 
 
@@ -124,7 +124,7 @@ if (isset($_POST['submit'])) {
 
 
 
-            </div>   
+            </div>
 
 
 
@@ -135,7 +135,7 @@ if (isset($_POST['submit'])) {
         <?php elseif($enviado):
           echo "Fraccion agregada";
           endif ?>
-      
+
         </main>
 
 

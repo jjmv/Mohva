@@ -4,7 +4,7 @@ $errores = '';
 
 $enviado = '';
 if (isset($_POST['submit'])) {
-    
+
 
     $numPedim = $_POST['numPedim'];
     $cliente = $_POST['cliente'];
@@ -18,7 +18,7 @@ if (isset($_POST['submit'])) {
       } else if(strlen($numPedim) != 7){
         $errores.= "El numero de pedimento no es de 7 digitos </br>";
       }
-  
+
     } else {
       $errores.= "Por favor ingrese un numero de pedimento <br />";
     }
@@ -57,19 +57,19 @@ if (isset($_POST['submit'])) {
 
 
 
-  if (!$errores) { 
+  if (!$errores) {
 
-    
+
 
     try{
 
-  
+
     $conexion = new PDO('mysql:host=localhost;dbname=mohva', 'root', '');
- 
+
     $statement = $conexion->prepare("INSERT INTO pedimentos VALUES(null, :numPedim, :cliente, :fraccion, :importe, :impuesto)");
 
     $statement->execute(array(':numPedim' => $numPedim, ':cliente' => $cliente, ':fraccion' => $fraccion, ':importe' => $importe, ':impuesto' => $impuesto ));
-  
+
     $resultados = $statement->fetchall();
     foreach ($resultados as $usuarios) {
           echo $usuarios['nombre'] . '<br />';
@@ -138,7 +138,7 @@ if (isset($_POST['submit'])) {
            </div>
            <a href="#!user"><img class="circle" src="source/mohvalogo.png"></a>
            <a href="#!name"><span class="white-text name">Ejemplo Empleado</span></a>
-           <a href="#!email"><span class="white-text email">jdandturk@gmail.com</span></a>
+           <a href="#!email"><span class="white-text email">empleado@gmail.com</span></a>
          </div></li>
           <li><a class="subheader" align="center">Menú</a></li>
          <li><div class="divider"></div></li>
@@ -155,7 +155,7 @@ if (isset($_POST['submit'])) {
         </header>
 
         <main>
-            <div class="container">    
+            <div class="container">
 <h1>Agregar pedimentos </h1>
 
 
@@ -165,35 +165,35 @@ if (isset($_POST['submit'])) {
     <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" class="col s12" method="POST" name="login">
       <div class="row">
         <div class="input-field col s12">
-          <input value="<?php if(!$enviado && isset($numPedim)) echo $numPedim ?>" name="numPedim" placeholder="1234567" id="first_name" type="text" class="validate">
+          <input value="<?php if(!$enviado && isset($numPedim)) echo $numPedim ?>" name="numPedim" placeholder="1234567" id="first_name" type="text" class="validate" required>
           <label for="first_name">Numero de pedimento</label>
         </div>
 
         <div class="input-field col s12">
-          <input value="<?php if(!$enviado && isset($cliente)) echo $cliente ?>" name="cliente" placeholder="Empresa, Nombre, etc." id="first_name" type="text" class="validate">
+          <input value="<?php if(!$enviado && isset($cliente)) echo $cliente ?>" name="cliente" placeholder="Empresa, Nombre, etc." id="first_name" type="text" class="validate" required>
           <label for="first_name">Cliente</label>
         </div>
 
         <div class="input-field col s12">
-          <input value="<?php if(!$enviado && isset($fraccion)) echo $fraccion ?>" name="fraccion" placeholder="123456789" id="first_name" type="text" class="validate">
+          <input value="<?php if(!$enviado && isset($fraccion)) echo $fraccion ?>" name="fraccion" placeholder="123456789" id="first_name" type="text" class="validate" required>
           <label for="first_name">Fraccion</label>
         </div>
 
         <div class="input-field col s12">
-          <input value="<?php if(!$enviado && isset($importe)) echo $importe ?>" name="importe" placeholder="99.99" id="first_name" type="text" class="validate">
+          <input value="<?php if(!$enviado && isset($importe)) echo $importe ?>" name="importe" placeholder="99.99" id="first_name" type="text" class="validate" required>
           <label for="first_name">Importe</label>
         </div>
 
         <div class="input-field col s12">
-          <input value="<?php if(!$enviado && isset($impuesto)) echo $impuesto ?>" name="impuesto" placeholder="99.99" id="first_name" type="text" class="validate">
+          <input value="<?php if(!$enviado && isset($impuesto)) echo $impuesto ?>" name="impuesto" placeholder="99.99" id="first_name" type="text" class="validate" required>
           <label for="first_name">Impuestos</label>
-        </div>   
+        </div>
 
         <button class="btn waves-effect waves-light black" type="submit" name="submit">Enviar
-    <i class="material-icons right">send</i>     
+    <i class="material-icons right">send</i>
 
 
-        
+
     </form>
 
 
@@ -201,9 +201,9 @@ if (isset($_POST['submit'])) {
   </div>
 
 
- 
 
-            </div>  
+
+            </div>
 
            <?php if(!empty($errores)): ?>
         <div >
@@ -211,15 +211,15 @@ if (isset($_POST['submit'])) {
         </div>
         <?php elseif($enviado):
           echo "Pedimento agregado";
-          endif ?> 
+          endif ?>
         </main>
 
 
-      
 
 
 
-   
+
+
 
 
 
@@ -237,7 +237,3 @@ if (isset($_POST['submit'])) {
   });
    </script>
 </html>
-
-
-
-

@@ -1,5 +1,5 @@
 
-<?php 
+<?php
 session_start();
 if(isset($_SESSION['usuario'])){
     header('Location: empleadosIndex.php');
@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	try {
 
 		$conexion = new PDO('mysql:host=localhost;dbname=mohva', 'root', ''); #Modificar a la hora de implementar
-		
+
 	} catch (PDOException $e) {
 		echo "Error: " . $e->getMessage();
 	}
@@ -43,6 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
  <html>
    <meta charset="utf-8">
    <head>
+     <title>Mohva Logistics</title>
      <!--Import Google Icon Font-->
     <link type="text/css" href="css/material-design-icons-3.0.1/iconfont/material-icons.css" rel="stylesheet">
      <!--Import materialize.css-->
@@ -153,6 +154,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <!-- Modal Structure -->
           <div id="modal1" class="modal">
             <div class="modal-content">
+                <h3 align="center"> Ingrese los siguientes datos </h3>
               <div class="row container">
                 <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" name="login" class="col s12" method="post">
                   <div class="row">
