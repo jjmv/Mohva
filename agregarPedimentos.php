@@ -57,37 +57,7 @@ if (isset($_POST['submit'])) {
 
 
 
-
-
-
-    /*if(!empty($nombre)){
-    $nombre = trim($nombre);
-    $nombre = filter_var($nombre, FILTER_SANITIZE_STRING);
-  }else {
-    $errores.= 'Por favor ingresa un nombre </br>';
-  }
-
-  if (!empty($correo)) {
-    //$correo = trim($$correo);
-    $correo = filter_var($correo, FILTER_SANITIZE_EMAIL);
-
-    if(!filter_var($correo, FILTER_VALIDATE_EMAIL)){
-      $errores.= 'Por favor ingresa un correo valido <br />';
-    }
-
-
-  }else {
-    $errores.= 'Por favor ingresa un correo <br />';
-  }
-  if (!empty($mensaje)) {
-    $mensaje = htmlspecialchars($mensaje);
-    $mensaje = trim($mensaje);
-    $mensaje = stripcslashes($mensaje);
-  } else {
-    $errores.= 'Por favor ingresa el mensaje';
-  }
-*/
-  if (!$errores) { //Se pregunta SI NO HAY ERRORES
+  if (!$errores) { 
 
     
 
@@ -233,7 +203,15 @@ if (isset($_POST['submit'])) {
 
  
 
-            </div>   
+            </div>  
+
+           <?php if(!empty($errores)): ?>
+        <div >
+          <?php echo $errores; ?>
+        </div>
+        <?php elseif($enviado):
+          echo "Pedimento agregado";
+          endif ?> 
         </main>
 
 
@@ -243,13 +221,7 @@ if (isset($_POST['submit'])) {
 
    
 
-           <?php if(!empty($errores)): ?>
-        <div >
-          <?php echo $errores; ?>
-        </div>
-        <?php elseif($enviado):
-          echo "Pedimento agregado";
-          endif ?>
+
 
 
   </body>

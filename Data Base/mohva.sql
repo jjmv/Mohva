@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 13, 2016 at 09:16 
+-- Generation Time: Nov 14, 2016 at 08:24 
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 5.6.24
 
@@ -38,10 +38,8 @@ CREATE TABLE `contacto` (
 --
 
 INSERT INTO `contacto` (`id`, `nombre`, `correo`, `mensaje`) VALUES
-(160, 'Yisus Craist', 'yisus@craist.com', 'Hijo mÃ­o'),
-(161, 'jesus', 'a@a.com', 'ola'),
-(162, 'jesus', 'a@a.com', 'ola'),
-(163, 'Yoyoyoyo', 'yisus@nigga.com', 'what''s up');
+(164, 'JEsus ivan', 'a@a.com', 'hola'),
+(166, 'dd', 'a@a.com', 'd');
 
 -- --------------------------------------------------------
 
@@ -60,12 +58,7 @@ CREATE TABLE `fracciones` (
 --
 
 INSERT INTO `fracciones` (`id`, `fraccion`, `descripcion`) VALUES
-(1, 123, 'hola'),
-(2, 123, 'hola'),
-(3, 123, 'hola'),
-(4, 1234, 'hey'),
-(5, 123, 'hola'),
-(6, 564, 'eju');
+(34, 2, 'g');
 
 -- --------------------------------------------------------
 
@@ -87,13 +80,7 @@ CREATE TABLE `pedimentos` (
 --
 
 INSERT INTO `pedimentos` (`id`, `num_pedimento`, `cliente`, `fraccion`, `importe`, `impuestos`) VALUES
-(1, 123, 'moh', 123, 9.9, 9.9),
-(2, 123, 'mohva', 123, 2.3, 2),
-(3, 123, 'mohva', 123, 2.3, 2),
-(4, 123, 'mohva', 123, 2.3, 2),
-(5, 123, 'mohva', 123, 9.8, 8.2),
-(6, 156, 'mohvaaa', 454, 4.2, 4.5),
-(7, 777, 'vejeta', 123, 12, 13);
+(19, 1234567, 'MOhv', 1578, 48, 478);
 
 -- --------------------------------------------------------
 
@@ -150,17 +137,17 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT for table `contacto`
 --
 ALTER TABLE `contacto`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=164;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=169;
 --
 -- AUTO_INCREMENT for table `fracciones`
 --
 ALTER TABLE `fracciones`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 --
 -- AUTO_INCREMENT for table `pedimentos`
 --
 ALTER TABLE `pedimentos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 --
 -- AUTO_INCREMENT for table `usuarios`
 --

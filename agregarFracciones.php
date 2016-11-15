@@ -1,12 +1,9 @@
 <?php
-
 $errores = '';
 $enviado = '';
-
 if (isset($_POST['submit'])) {
     $descripcion = $_POST['descripcion'];
     $fraccion = $_POST['fraccion'];
-
     if(!empty($fraccion)){
       if(!is_numeric($fraccion)){
         $errores .= "Debe ingresar solo numeros para la fraccion <br />";
@@ -14,9 +11,6 @@ if (isset($_POST['submit'])) {
     } else {
       $errores.= "Por favor ingrese una fraccion <br />";
     }
-
-
-
   if (!empty($descripcion)) {
       $descripcion = htmlspecialchars($descripcion);
       $descripcion = trim($descripcion);
@@ -24,49 +18,11 @@ if (isset($_POST['submit'])) {
     } else {
       $errores.= 'Por favor agregue una descripcion';
     }
-
-
-
-
-
-    /*if(!empty($nombre)){
-    $nombre = trim($nombre);
-    $nombre = filter_var($nombre, FILTER_SANITIZE_STRING);
-  }else {
-    $errores.= 'Por favor ingresa un nombre </br>';
-  }
-
-  if (!empty($correo)) {
-    //$correo = trim($$correo);
-    $correo = filter_var($correo, FILTER_SANITIZE_EMAIL);
-
-    if(!filter_var($correo, FILTER_VALIDATE_EMAIL)){
-      $errores.= 'Por favor ingresa un correo valido <br />';
-    }
-
-
-  }else {
-    $errores.= 'Por favor ingresa un correo <br />';
-  }
-  if (!empty($mensaje)) {
-    $mensaje = htmlspecialchars($mensaje);
-    $mensaje = trim($mensaje);
-    $mensaje = stripcslashes($mensaje);
-  } else {
-    $errores.= 'Por favor ingresa el mensaje';
-  }
-*/
-  if (!$errores) { //Se pregunta SI NO HAY ERRORES
-
-
+  if (!$errores) { 
     try{
-
-  
     $conexion = new PDO('mysql:host=localhost;dbname=mohva', 'root', '');
- 
     $statement = $conexion->prepare("INSERT INTO fracciones VALUES(null, :fraccion, :descripcion)");
     $statement->execute(array(':fraccion' => $fraccion, ':descripcion' => $descripcion));
-  
     $resultados = $statement->fetchall();
     foreach ($resultados as $usuarios) {
           echo $usuarios['nombre'] . '<br />';
@@ -74,22 +30,10 @@ if (isset($_POST['submit'])) {
     } catch (PDOException $e) {
         echo "Error: " . $e->getMessage();
     }
-
     $enviado = 'true';
-
   }
-
 }
-
-
-
-
 ?>
-
-
-
-
-
 
 <!DOCTYPE html>
 <html>

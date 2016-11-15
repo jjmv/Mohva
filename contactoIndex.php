@@ -3,6 +3,7 @@
 $errores2='';
 $enviado='';
 
+
 if (isset($_GET['submit'])) {
   $nombre = $_GET['nombre'];
   $correo = $_GET['correo'];
