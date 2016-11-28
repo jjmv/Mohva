@@ -19,8 +19,8 @@
 
       window.location.href = "eliminarPedimentos.php?id="+id;
 
-    } 
-    
+    }
+
 
     </script>
 
@@ -58,11 +58,11 @@
          </div></li>
           <li><a class="subheader" align="center">Menú</a></li>
          <li><div class="divider"></div></li>
-          <li><a class="waves-effect waves-orange " href="verPedimentos.php"><i class="material-icons">pageview</i>Ver Pedimentos</a></li>
+          <li><a class="waves-effect waves-orange " href="verPedimentos"><i class="material-icons">pageview</i>Ver Pedimentos</a></li>
            <li><a class="waves-effect waves-orange " href="agregarPedimentos.php"><i class="material-icons">add_circle</i>Agregar Pedimentos</a></li>
-            <li><a class="waves-effect waves-orange " href="verFracciones.php"><i class="material-icons">view_list</i>Fracciones</a></li>
+            <li><a class="waves-effect waves-orange " href="verFracciones"><i class="material-icons">view_list</i>Ver Fracciones</a></li>
             <li><a class="waves-effect waves-orange " href="agregarFracciones.php"><i class="material-icons">view_list</i>Agregar Fracciones</a></li>
-             <li><a class="waves-effect waves-orange " href="mensajes.php"><i class="material-icons">message</i>Mensajes</a></li>
+             <li><a class="waves-effect waves-orange " href="mensajes"><i class="material-icons">message</i>Mensajes</a></li>
 
          <br><br>
          <li  ><a class="waves-effect waves-light btn  orange darken-3 white-text" href="cerrar.php"><i class="material-icons white-text" >power_settings_new</i>Salir</a></li>
@@ -71,8 +71,8 @@
         </header>
 
         <main>
-            <div class="container">    
-<h1>Ver pedimentos</h1>
+            <div class="container">
+<h1>Pedimentos</h1>
 
 
 
@@ -124,12 +124,12 @@ mysql_close(); //Make sure to close out the database connection
 
 
 
-   
-            </div>   
+
+            </div>
         </main>
 
 
-      
+
 
 
 
@@ -150,11 +150,11 @@ mysql_close(); //Make sure to close out the database connection
   $('.modal-trigger').leanModal();
   });
 
- 
 
 
 
-  
-  
+
+
+
    </script>
 </html>
