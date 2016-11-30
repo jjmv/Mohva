@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.2
+-- version 4.5.1
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Nov 14, 2016 at 08:24 
--- Server version: 10.1.16-MariaDB
--- PHP Version: 5.6.24
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 29-11-2016 a las 11:40:06
+-- Versión del servidor: 10.1.13-MariaDB
+-- Versión de PHP: 5.6.23
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -16,14 +16,17 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
 
+CREATE DATABASE `mohva`;
+USE `mohva`; 
+
 --
--- Database: `mohva`
+-- Base de datos: `mohva`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `contacto`
+-- Estructura de tabla para la tabla `contacto`
 --
 
 CREATE TABLE `contacto` (
@@ -34,17 +37,18 @@ CREATE TABLE `contacto` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `contacto`
+-- Volcado de datos para la tabla `contacto`
 --
 
 INSERT INTO `contacto` (`id`, `nombre`, `correo`, `mensaje`) VALUES
-(164, 'JEsus ivan', 'a@a.com', 'hola'),
-(166, 'dd', 'a@a.com', 'd');
+(170, 'Jesus', 'jesusivan@live.com', 'Saludos!'),
+(171, 'Javier', 'javivm@hotmail.com', 'Excelente servicio!'),
+(172, 'Edgar', 'garyi97@gmail.com', 'Estoy interesado en sus servicios.');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `fracciones`
+-- Estructura de tabla para la tabla `fracciones`
 --
 
 CREATE TABLE `fracciones` (
@@ -54,16 +58,18 @@ CREATE TABLE `fracciones` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `fracciones`
+-- Volcado de datos para la tabla `fracciones`
 --
 
 INSERT INTO `fracciones` (`id`, `fraccion`, `descripcion`) VALUES
-(34, 2, 'g');
+(40, 123456789, 'Fraccion 1'),
+(41, 987654321, 'Importante'),
+(42, 7854123, 'Fraccion 3');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pedimentos`
+-- Estructura de tabla para la tabla `pedimentos`
 --
 
 CREATE TABLE `pedimentos` (
@@ -76,16 +82,18 @@ CREATE TABLE `pedimentos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `pedimentos`
+-- Volcado de datos para la tabla `pedimentos`
 --
 
 INSERT INTO `pedimentos` (`id`, `num_pedimento`, `cliente`, `fraccion`, `importe`, `impuestos`) VALUES
-(19, 1234567, 'MOhv', 1578, 48, 478);
+(23, 1234567, 'Mohva', 15874, 12.5, 15.4),
+(24, 5974678, 'FIME', 8745, 0, 41.45),
+(25, 9654711, 'FACPYA', 1478, 8744, 542.78);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `usuarios`
+-- Estructura de tabla para la tabla `usuarios`
 --
 
 CREATE TABLE `usuarios` (
@@ -95,64 +103,65 @@ CREATE TABLE `usuarios` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `usuarios`
+-- Volcado de datos para la tabla `usuarios`
 --
 
 INSERT INTO `usuarios` (`id`, `usuario`, `pass`) VALUES
-(1, 'jesus', '123');
+(1, 'admin', '123'),
+(2, 'jesus', '123');
 
 --
--- Indexes for dumped tables
+-- Índices para tablas volcadas
 --
 
 --
--- Indexes for table `contacto`
+-- Indices de la tabla `contacto`
 --
 ALTER TABLE `contacto`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `fracciones`
+-- Indices de la tabla `fracciones`
 --
 ALTER TABLE `fracciones`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `pedimentos`
+-- Indices de la tabla `pedimentos`
 --
 ALTER TABLE `pedimentos`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `usuarios`
+-- Indices de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
--- AUTO_INCREMENT for table `contacto`
+-- AUTO_INCREMENT de la tabla `contacto`
 --
 ALTER TABLE `contacto`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=169;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=173;
 --
--- AUTO_INCREMENT for table `fracciones`
+-- AUTO_INCREMENT de la tabla `fracciones`
 --
 ALTER TABLE `fracciones`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 --
--- AUTO_INCREMENT for table `pedimentos`
+-- AUTO_INCREMENT de la tabla `pedimentos`
 --
 ALTER TABLE `pedimentos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 --
--- AUTO_INCREMENT for table `usuarios`
+-- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
